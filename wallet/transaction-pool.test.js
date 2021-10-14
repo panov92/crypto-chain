@@ -70,7 +70,6 @@ describe("TransactionPool", () => {
       expect(errorMock).toHaveBeenCalled();
     })
 
-
   })
 
   describe("clear()", () => {
