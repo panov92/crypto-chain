@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Card } from 'react-bootstrap';
 import Block from './Block';
 
 const Blocks = () => {
@@ -14,20 +15,20 @@ const Blocks = () => {
 
 
   return (
-    <div className="r">
-      <h3>Blocks</h3>
-      <div className="rounded rounded-3 border border-secondary px-3 py-2">
+    <Card className="bg-dark-30 text-white">
+      <Card.Header>Blocks</Card.Header>
+      <Card.Body>
         {
           blocks.map((block, index) => {
             return (
-              <div key={`key-${index}`} className="mb-2 border-bottom border-secondary">
+              <div key={`key-${index}`} className="mb-2">
                 <Block key={block.hash} {...block} />
               </div>
             );
           })
         }
-      </div>
-    </div>
+      </Card.Body>
+    </Card>
   )
 }
 

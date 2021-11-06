@@ -3,3 +3,10 @@ body {
   background-color: #33373a;
   color: #fff;
 }
+
+.bg-dark-30 {
+  background-color: #4a525a;
+}
+.bg-dark-50 {
+  background-color: #3d444c;
+}

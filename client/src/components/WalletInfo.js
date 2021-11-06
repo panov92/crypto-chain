@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Card } from 'react-bootstrap';
+import Block from './Block';
 
 const WalletInfo = () => {
 
@@ -16,11 +18,13 @@ const WalletInfo = () => {
 
   return (
     <div className="WalletInfo mb-4">
-      <h3>Wallet info</h3>
-      <div className="rounded rounded-3 border border-secondary px-3 py-2">
-        <div>Address: {`${address.slice(0, 10)}...${address.slice(-10)}`}</div>
-        <div>Balance: {balance}</div>
-      </div>
+      <Card className="bg-dark-30 text-white">
+        <Card.Header>Wallet info</Card.Header>
+        <Card.Body>
+          <div>Address: {`${address.slice(0, 10)}...${address.slice(-10)}`}</div>
+          <div>Balance: {balance}</div>
+        </Card.Body>
+      </Card>
     </div>
   )
 }
