@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
-import Block from './Block';
 
 const WalletInfo = () => {
 

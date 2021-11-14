@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from 'react-bootstrap';
-import Block from './Block';
+import Block from '../components/Block';
 
 const Blocks = () => {
   const [blocks, setBlocks] = useState([]);

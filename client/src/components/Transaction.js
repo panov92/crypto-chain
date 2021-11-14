@@ -16,7 +16,6 @@ const Transaction = props => {
           </div>
         );
       })}
-      <div></div>
     </div>
   )
 }

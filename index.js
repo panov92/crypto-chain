@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const cors = require('cors');
 const request = require('request');
 const path = require('path');
 const Blockchain = require('./blockchain/index');
@@ -20,7 +21,7 @@ const pubsub = new PubSub({ blockchain, transactionPool });
 const transactionMiner = new TransactionMiner({ blockchain, transactionPool, wallet, pubsub })
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'client/dist')));
+app.use(cors());
 
 app.get('/api/blocks', (req, res) => {
   res.json(blockchain.chain);
@@ -79,10 +80,6 @@ app.get('/api/wallet-info', (req, res) => {
     address,
     balance: Wallet.calculateBalance({ chain: blockchain.chain, address })
   });
-});
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './client/dist/index.html'));
 });
 
 const syncWithRootState = () => {
