@@ -5,6 +5,7 @@ import history from './history';
 import Layout from './layout';
 import Home from './pages/Home';
 import Blocks from './pages/Blocks';
+import ConductTransaction from './pages/ConductTransaction';
 
 import './index.css';
 
@@ -14,6 +15,7 @@ ReactDOM.render(
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/blocks" component={Blocks} />
+        <Route path="/conduct-transaction" component={ConductTransaction} />
       </Switch>
     </Layout>
   </Router>,

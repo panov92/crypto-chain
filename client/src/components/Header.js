@@ -21,6 +21,11 @@ const Header = () => {
                 Blocks
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink to="/conduct-transaction" activeClassName="active" className="nav-link">
+                Conduct transaction
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
