@@ -23,7 +23,12 @@ const Header = () => {
             </li>
             <li className="nav-item">
               <NavLink to="/conduct-transaction" activeClassName="active" className="nav-link">
-                Conduct transaction
+                Send
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/transaction-pool" activeClassName="active" className="nav-link">
+                Pool
               </NavLink>
             </li>
           </ul>

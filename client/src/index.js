@@ -6,6 +6,7 @@ import Layout from './layout';
 import Home from './pages/Home';
 import Blocks from './pages/Blocks';
 import ConductTransaction from './pages/ConductTransaction';
+import TransactionPool from './pages/TransactionPool';
 
 import './index.css';
 
@@ -16,6 +17,7 @@ ReactDOM.render(
         <Route exact path="/" component={Home} />
         <Route path="/blocks" component={Blocks} />
         <Route path="/conduct-transaction" component={ConductTransaction} />
+        <Route path="/transaction-pool" component={TransactionPool} />
       </Switch>
     </Layout>
   </Router>,

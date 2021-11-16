@@ -1,28 +1,46 @@
 import React, { useState } from 'react';
 import { Button, FormLabel, FormGroup, FormControl, Card } from 'react-bootstrap';
+import { toast } from 'react-toastify';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
-const Blocks = () => {
+const Blocks = props => {
   const [recipient, setRecipient] = useState('');
   const [amount, setAmount] = useState(0);
+  const { history } = props;
 
   const handleRecipient = e => {
     setRecipient(e.target.value);
   }
 
   const handleAmount = e => {
-    setAmount(e.target.value);
+    const val = +e.target.value;
+    if (typeof val === 'number' && !isNaN(val)) setAmount(val);
   }
 
   const conductTransaction = async e => {
     e.preventDefault();
 
-    const res = await axios.post('http://localhost:3005/api/transact', {
+    if (!recipient || !recipient.length) {
+      toast.error("Wrong recipient")
+      return false;
+    }
+
+    if (typeof amount !== 'number' || amount <= 0) {
+      toast.error("Not enough amount")
+      return false;
+    }
+
+    await axios.post('http://localhost:3005/api/transact', {
       recipient,
       amount
+    }).then(() => {
+      toast.success("Sent!");
+      history.push('/transaction-pool');
+    }).finally(() => {
+      setRecipient('');
+      setAmount(0);
     });
-
-    console.log(res.data);
   }
 
   return (
@@ -49,5 +67,5 @@ const Blocks = () => {
   )
 }
 
-export default Blocks;
+export default withRouter(Blocks);
 
