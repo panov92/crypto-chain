@@ -1,5 +1,8 @@
 require('dotenv').config();
 const bodyParser = require('body-parser');
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
 const request = require('request');
@@ -11,6 +14,7 @@ const Wallet = require('./wallet');
 const TransactionMiner = require('./app/transaction-miner');
 
 const isDevelopment = process.env.ENV === 'development';
+const isSSL = process.env.SSL === 'true';
 
 const DEFAULT_PORT = process.env.PORT || 3005;
 const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`;
@@ -151,11 +155,29 @@ if (process.env.GENERATE_PEER_PORT === 'true') {
 
 const PORT = process.env.PORT || PEER_PORT || DEFAULT_PORT;
 
-app.listen(PORT, err => {
-  if (err) console.log(err);
-  console.log(`listening at http://localhost:${PORT}`);
+if (isSSL) {
+  const SSL_CERTIFICATE = process.env.SSL_CERTIFICATE;
+  const SSL_CERTIFICATE_KEY = process.env.SSL_CERTIFICATE_KEY;
 
-  if (PORT !== DEFAULT_PORT) {
-    syncWithRootState();
-  }
-})
+  var options = {
+    key: fs.readFileSync(SSL_CERTIFICATE_KEY),
+    cert: fs.readFileSync(SSL_CERTIFICATE),
+  };
+
+  https.createServer(options, app).listen(PORT, function(){
+    console.log(`HTTPS listening at https://localhost:${PORT}`);
+
+    if (PORT !== DEFAULT_PORT) {
+      syncWithRootState();
+    }
+  });
+} else {
+  app.listen(PORT, err => {
+    if (err) console.log(err);
+    console.log(`listening at http://localhost:${PORT}`);
+
+    if (PORT !== DEFAULT_PORT) {
+      syncWithRootState();
+    }
+  })
+}
