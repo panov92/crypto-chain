@@ -7,7 +7,7 @@ const WalletInfo = () => {
   const [balance, setBalance] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3005/api/wallet-info')
+    fetch(`${process.env.REACT_APP_API_URL}/api/wallet-info`)
       .then(response => response.json())
       .then(json => {
         setAddress(json.address);
