@@ -26,6 +26,8 @@
     "client": "npm start --prefix client",
     "server": "nodemon index.js",
     "build": "npm run build --prefix client",
+    "pm2-server-start": "pm2 start index.js --name \"crypto-chain\"",
+    "pm2-server-restart": "pm2 restart crypto-chain",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "eslintConfig": {
