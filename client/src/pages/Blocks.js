@@ -6,7 +6,7 @@ const Blocks = () => {
   const [blocks, setBlocks] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3005/api/blocks')
+    fetch(`${process.env.REACT_APP_API_URL}/api/blocks`)
       .then(response => response.json())
       .then(json => {
         setBlocks(json);

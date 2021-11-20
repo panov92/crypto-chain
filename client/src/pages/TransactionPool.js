@@ -11,12 +11,12 @@ const TransactionPool = props => {
   const [transactionPoolMap, setTransactionPoolMap] = useState({});
 
   const fetchTransactionPoolMap = async () => {
-    const res = await axios.get('http://localhost:3005/api/transaction-pool-map');
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/transaction-pool-map`);
     setTransactionPoolMap(res.data);
   }
 
   const fetchMineTransactions = async () => {
-    const res = await axios.get('http://localhost:3005/api/mine-transactions');
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/mine-transactions`);
 
     if (res.status === 200) {
       toast.success("Success");

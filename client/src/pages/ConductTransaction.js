@@ -31,7 +31,7 @@ const Blocks = props => {
       return false;
     }
 
-    await axios.post('http://localhost:3005/api/transact', {
+    await axios.post(`${process.env.REACT_APP_API_URL}/api/transact`, {
       recipient,
       amount
     }).then(() => {
